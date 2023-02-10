@@ -11,6 +11,7 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+    [SerializeField] Text nameText;
     public GameObject GameOverText;
     
     private bool m_Started = false;
@@ -36,6 +37,8 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+
+        SetPlayerName();
     }
 
     private void Update()
@@ -72,5 +75,21 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+    }
+
+    void SetPlayerName()
+    {
+        string str;
+
+        if (Memorius.Instance == null)
+        {
+            str = "Error";
+        }
+        else
+        {
+            str = Memorius.Instance.PlayerName;
+        }
+
+        nameText.text = "Name : " + str;
     }
 }
