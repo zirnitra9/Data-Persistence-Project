@@ -11,5 +11,12 @@ public class DeathZone : MonoBehaviour
     {
         Destroy(other.gameObject);
         Manager.GameOver();
+
+        if (Memorius.Instance != null)
+        {
+            Memorius.Instance.UpdateHighScores(Memorius.Instance.PlayerName, Memorius.Instance.StealScoreFromMainManager());
+
+            Memorius.Instance.SaveHighScores();
+        }
     }
 }
